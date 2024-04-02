@@ -10,6 +10,7 @@
     <title>{% block title %}Only my gourmet note{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'account/favicon.ico' %}">
     {% if messages %}
         {% for message in messages %}
             <div class="alert {{ message.tags }}">{{ message }}</div>
