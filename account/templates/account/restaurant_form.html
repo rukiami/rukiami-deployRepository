@@ -1,0 +1,14 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>レストラン登録</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">登録</button>
+        {% comment %} <a href="javascript:history.back()" class="btn btn-home">ホームに戻る</a> {% endcomment %}
+        <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+    </form>
+</div>
+{% endblock %}

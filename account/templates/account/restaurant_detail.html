@@ -1,0 +1,42 @@
+{% extends 'account/base.html' %}
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>{{ restaurant.name }}</h1>
+  <p>場所: {{ restaurant.location }}</p>
+  <p>ジャンル: {{ restaurant.genre }}</p>
+  <p>価格帯: {{ restaurant.price_range }}</p>
+  {% if restaurant.google_maps %}
+  <p>Googleマップ: <a href="{{ restaurant.google_maps }}" target="_blank">{{ restaurant.google_maps }}</a></p>  
+  {% endif %}
+  {% if restaurant.url %}
+  <p>ウェブサイト: <a href="{{ restaurant.url }}" target="_blank" rel="noopener noreferrer">{{ restaurant.url }}</a></p>  
+  {% endif %}
+  <div class="photos">
+    {% for photo in restaurant.photos.all %}
+    <div class="photo">
+      <img src="{{ photo.image.url }}" alt="画像の説明" style="max-width: 200px; height: auto;">
+    </div>
+    {% empty %}
+    <p>写真はまだありません。</p>
+    {% endfor %}
+  </div>
+
+  <!-- 作成日時と更新日時を表示 -->
+  <p>作成日時: {{ restaurant.created_at|date:"Y年m月d日 H:i" }}</p>
+  <p>更新日時: {{ restaurant.updated_at|date:"Y年m月d日 H:i" }}</p>
+
+  <div class="edit-delete-button-container">
+    <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-primary">写真を追加</a>
+    <a href="{% url 'account:edit_restaurant' restaurant.id %}" class="btn btn-secondary">店舗情報を編集</a>
+    <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" style="display: inline;">
+      {% csrf_token %}
+      <input type="submit" value="削除" class="btn btn-danger" onclick="return confirm('本当にこのレストランを削除しますか？');">
+    </form>
+  </div>
+  <div class="back-button-container">
+    <a href="{% url 'account:restaurant_list' %}" class="btn btn-back-list">レストラン一覧に戻る</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,248 @@
+body, html {
+    background-color: white; /* 背景色を白に */
+    color: black; /* テキストの色を黒に */
+}
+
+.header {
+    background-color: LightSalmon; /* ヘッダーの背景色 */
+    color: white; /* ヘッダーのテキスト色 */
+    padding: 10px 0; /* ヘッダーの上下パディング */
+    text-align: center; /* テキストを中央揃え */
+    width: 100%; /* 幅を100%に設定 */
+    margin: 0 auto; /* マージンを自動で上下左右に設定 */
+    border-radius: 0; /* 角の丸みをなくす */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
+}
+
+.main-title {
+    font-size: 24px; /* タイトルのフォントサイズ */
+    text-align: center; /* タイトルを中央揃え */
+    margin: 20px 0; /* タイトルの上下マージン */
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.button-container, .links-center-container {
+    display: flex; /* フレックスボックスを使用 */
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: center; /* 要素を中央揃え */
+    justify-content: center; /* 中央に配置 */
+    margin: 30px 0; /* 上下マージンを設定 */
+}
+
+.edit-delete-button-container {
+    display: flex; /* Flexboxを使用して要素を横並びにする */
+    justify-content: center; /* ボタンを中央に配置 */
+    gap: 20px; /* ボタンの間隔を設定 */
+    margin-bottom: 20px; /* 下に余白を追加 */
+}
+
+/* 「レストラン一覧に戻る」ボタン用のスタイル */
+.back-button-container {
+    display: flex;
+    justify-content: center;
+    
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10px; /* 下端からの余白 */ 
+}
+
+/* ボタン共通のスタイル */
+.btn, .btn-primary, .btn-secondary, .btn-danger {
+    padding: 10px 20px; /* パディング */
+    border-radius: 5px; /* 角の丸み */
+    text-decoration: none; /* テキストの下線を消す */
+    display: inline-block; /* インラインブロック表示で配置 */
+    transition: background-color 0.3s ease; /* 背景色のトランジション */
+}
+
+.btn-primary {
+    background-color: #4CAF50; /* プライマリーボタンの背景色 */
+    color: white; /* テキスト色 */
+}
+
+.btn-secondary {
+    background-color: #2196F3; /* セカンダリーボタンの背景色 */
+    color: white; /* テキスト色 */
+}
+
+.btn-danger {
+    background-color: #f44336; /* デンジャーボタンの背景色 */
+    color: white; /* テキスト色 */
+}
+
+.btn:hover {
+    opacity: 0.9; /* ホバー時の透明度 */
+}
+.container {
+    width: 90%; /* コンテナの幅 */
+    max-width: 1200px; /* コンテナの最大幅 */
+    margin: 20px auto; /* コンテナのマージンを上下に設定し、左右を自動で中央揃え */
+    padding: 20px; /* コンテナ内のパディング */
+    border: none; /* 枠線なし */
+    box-shadow: none; /* 影なし */
+}
+
+.alert {
+    color: red; /* 警告メッセージの色 */
+    text-align: center; /* 警告メッセージを中央揃え */
+    margin-bottom: 20px; /* 警告メッセージの下マージン */
+}
+
+.subheader {
+    margin-bottom: 15px; /* サブヘッダーの下マージン */
+    border: none; /* 枠線なし */
+    box-shadow: none; /* 影なし */
+}
+
+a {
+    color: SaddleBrown; /* リンクの色 */
+    text-decoration: none; /* 下線なし */
+}
+
+a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.btn, .btn-back, .btn-home {
+    background-color: #FFA07A; /* ボタンの背景色 */
+    color: white; /* ボタンのテキスト色 */
+    padding: 10px 20px; /* ボタンのパディング */
+    border: none; /* ボタンの枠線なし */
+    border-radius: 5px; /* ボタンの角丸 */
+    text-transform: uppercase; /* テキストを大文字に */
+    font-weight: bold; /* フォントを太字に */
+    cursor: pointer; /* カーソルを指示マークに */
+    display: inline-block; /* インラインブロックとして表示 */
+    text-align: center; /* テキストを中央揃え */
+    margin: 10px 0; /* 上下マージン */
+    width: auto; /* 幅を自動調整 */
+    transition: background-color 0.3s; /* 背景色の変化を滑らかに */
+}
+
+.btn:hover, .btn-back:hover, .btn-home:hover {
+    background-color: #e9967a; /* ホバー時の背景色を少し明るく */
+    opacity: 0.8; 
+}
+
+
+
+.genre-search, .logout-link, .home-return {
+    color: SaddleBrown; /* リンクの色を小麦色に */
+    text-decoration: none; /* リンクの下線を削除 */
+    margin-top: 15px; /* 上のマージン */
+    display: inline-block; /* インラインブロック表示 */
+    text-align: center; /* Centering the text */
+    margin-bottom: 20px;
+}
+
+.centered-container {
+    display: flex; /* Flexboxを使用 */
+    flex-direction: low; /* アイテムを縦並びに */
+    align-items: center; /* 中央揃え */
+    justify-content: center; /* 中央揃え */
+}
+
+.button-container {
+    display: flex; /* Flexboxを使用 */
+    flex-direction: low; /* 要素を縦に並べる */
+    align-items: center; /* 要素を中央に揃える */
+    justify-content: center; /* 中央に配置 */
+    margin-top: 30px; /* 上の余白 */
+    margin-bottom: 30px; /* 下の余白 */
+}
+
+h1, .main-title {
+    text-align: center; /* テキストを中央揃えに */
+    margin-top: 20px; /* 上の余白 */
+    margin-bottom: 20px; /* 下の余白 */
+}
+
+.comment {
+    font-size: 16px; /* フォントサイズ */
+    color: #EEE; /* テキストの色 */
+    margin-top: 20px; /* 上の余白 */
+    text-align: center; /* 中央揃え */
+}
+
+#corner-image {
+    position: fixed; /* 位置を固定 */
+    right: 20px; /* 右から20pxの位置 */
+    bottom: 20px; /* 下から20pxの位置 */
+    width: 150px; /* 幅 */
+    height: auto; /* 高さを自動調整 */
+}
+
+.links-center-container a {
+    display: block; /* ブロック要素として表示 */
+    margin-bottom: 20px; /* 下のマージン */
+    color: #8b4513; /* リンクの色 */
+    text-align: center; /* テキストを中央揃えに */
+}
+
+.links-center-container a:last-child {
+    margin-bottom: 0; /* 最後のアイテムの下のマージンを0に */
+}
+
+.btn-back-list {
+    background-color: darkgray; /* ボタンの背景色をグレーに */
+    color: black; /* ボタンのテキスト色を黒に */
+    border: 1px solid #ccc; /* ボタンの境界線を設定 */
+    margin: 0 auto;
+    display: block; /* ブロック要素として表示 */
+}
+
+.btn-back-list:hover {
+    background-color: #f2f2f2; /* ホバー時の背景色を薄いグレーに */
+    color: black; /* ホバー時のテキスト色を黒に */
+}
+
+.btn-back {
+    background-color: darkgray; /* ボタンの背景色をグレーに */
+    color: black; /* ボタンのテキスト色を黒に */
+    border: 1px solid #ccc; /* ボタンの境界線を設定 */
+}
+
+.btn-back:hover {
+    background-color: #a9a9a9; /* ホバー時の背景色を薄いグレーに */
+    color: black; /* ホバー時のテキスト色を黒に */
+}
+
+.btn-home {
+    background-color: darkgray; /* ボタンの背景色をグレーに */
+    color: white; /* テキスト色を黒に */
+    padding: 10px 20px; /* パディング */
+    border-radius: 5px; /* 角丸 */
+    text-decoration: none; /* 下線を無くす */
+    display: block; /* インラインブロックとして表示 */
+    transition: background-color 0.3s; /* 背景色の変化を滑らかに */
+    cursor: pointer; /* カーソルを指示マークに */
+}
+
+.btn-home:hover {
+    background-color: #f2f2f2; /* ホバー時の背景色を薄いグレーに */
+    color: black; /* ホバー時のテキスト色を黒に */
+}
+
+
+.welcome-comment-container {
+    text-align: center;
+}
+
+.welcome-comment {
+    font-size: 18px; /* タイトルより小さなフォントサイズに設定 */
+    color: #555; /* 文字色 */
+    margin: 5px 0; /* 上下の余白 */
+}
+
+.gourmet-diary-title {
+    font-size: 30px; /* 少し小さなフォントサイズに設定 */
+    display: block; /* ブロックレベルの要素として表示 */
+    text-align: center; /* テキストを中央に揃える */
+    margin: 0 auto; /* 上下のマージンを自動にして中央に */
+   
+    margin-top: 20px; /* 上の余白 */
+    margin-bottom: 20px; /* 下の余白 */
+}
+

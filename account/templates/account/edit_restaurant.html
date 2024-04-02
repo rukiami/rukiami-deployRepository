@@ -1,0 +1,34 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>店舗情報の編集</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">保存</button>
+        {% comment %} <button type="submit" class="btn">保存</button> {% endcomment %}
+        <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">ホームに戻る</a>
+
+    </form>
+        {% comment %} <button type="submit">保存</button> {% endcomment %}
+        {% comment %} <button class="btn">保存</button>
+        <button class="btn">戻る</button>
+        
+    </form>
+    {% endcomment %}
+    
+    <!-- 編集フォームの下部 -->
+    <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" onsubmit="return confirm('本当に削除しますか？');">
+    {% csrf_token %}
+    <input type="submit" value="削除" class="btn btn-danger">
+    {% comment %} <textarea name="location" class="shorter-width"></textarea> {% endcomment %}
+
+
+
+    {% comment %} <form method="post" action="{% url 'account:delete_restaurant' restaurant.id %}">
+        {% csrf_token %}
+        <button type="submit">削除</button> {% endcomment %}
+    </form>
+</div>
+{% endblock %}

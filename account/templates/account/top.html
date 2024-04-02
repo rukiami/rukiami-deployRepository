@@ -1,0 +1,37 @@
+{% extends "account/base.html" %}
+
+{% block title %}Only my gourmet note{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="my-5">グルメ記録アプリへようこそ</h1>
+    <div class="button-container">    
+        <a href="{% url 'account:login' %}" class="btn btn-outline-primary">ログイン</a>
+        <a href="{% url 'account:signup' %}" class="btn btn-outline-primary">新規登録</a> 
+    </div>
+</div> 
+{% endblock %}
+
+
+
+{% comment %} <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+</style> {% endcomment %}
+
+{% comment %} <div class="container">
+
+{% block content %} {% endcomment %}

@@ -1,0 +1,29 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Only my gourmet note{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</head>
+<body>
+    {% comment %} <div class="header" style="background-color: coral; color: white; padding: 20px 0; text-align: center;"> {% endcomment %}
+    <div class="header">   
+        <h1>Only my gourmet note</h1>
+    </div>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

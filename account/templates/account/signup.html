@@ -1,0 +1,23 @@
+{% extends "account/base.html" %}
+{% block title %}新規登録{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>新規登録</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">登録</button>
+    </form>
+    <a href="{% url 'account:login' %}" class="btn-back">戻る</a>
+
+    {% if messages %}
+    {% comment %} <ul class="messages"> {% endcomment %}
+    <div class="alert alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

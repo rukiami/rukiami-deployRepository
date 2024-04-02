@@ -1,0 +1,29 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>店舗登録</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      
+        {{ form.as_p }} 
+        <button type="submit" class="btn btn-primary">保存</button>
+    
+    </form>
+    <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+    {% comment %} <a href="javascript:history.back()" class="btn btn-home">ホームに戻る</a> {% endcomment %}
+
+    {% comment %} <button onclick="history.back()">戻る</button> {% endcomment %}
+        {% comment %} <button type="submit">追加</button> {% endcomment %}
+        {% comment %} <button type="submit">保存</button>
+        <button type="button" class="btn btn-secondary" onclick="history.back()">戻る</button>
+         {% endcomment %}
+         {% comment %} <button class="btn">保存</button> {% endcomment %}
+         
+          
+
+        {% comment %} <a href="{% url 'restaurant_list' %}" class="btn btn-secondary">レストラン一覧に戻る</a> {% endcomment %}
+
+    
+  </div>
+{% endblock %}

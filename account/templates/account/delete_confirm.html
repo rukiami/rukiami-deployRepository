@@ -1,0 +1,15 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ restaurant.name }} を削除しますか？</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">削除</button>
+        <button class="btn">保存</button>
+        <button class="btn">戻る</button>
+
+    </form>
+    <a href="{% url 'account:restaurant_detail' restaurant.id %}">キャンセル</a>
+</div>
+{% endblock %}
