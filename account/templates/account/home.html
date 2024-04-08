@@ -7,8 +7,8 @@
 <div class="container">
     <h1 class="gourmet-diary-title">Welcome to only my gourmet note</h1>
     <div class="welcome-comment-container">
-        <p class="welcome-comment">行ってみて良かった、行ってみたいお店を登録して</p>
-        <p class="welcome-comment">自分だけのグルメ記録アプリを作成しよう！</p>
+        <p class="welcome-comment">このアプリは自分だけのグルメノートが作れます。</p>
+        <p class="welcome-comment"> 行って良かった、行ってみたいお店を登録しよう。</p>
     </div>
     <div class="links-center-container">
         <a href="{% url 'account:restaurant_add' %}">レストラン登録</a>
@@ -17,6 +17,7 @@
         <a href="{% url 'account:search' %}">ジャンル検索</a>
         <a href="{% url 'account:logout' %}">ログアウト</a>
     </div>
-    <img src="{% static 'account/カフェ.png' %}" alt="ホーム">
+    <img src="{% static 'account/写真.png' %}" alt="ホーム">
 </div>
 {% endblock %}
+

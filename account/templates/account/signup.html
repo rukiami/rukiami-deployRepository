@@ -6,18 +6,34 @@
     <h1>新規登録</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">登録</button>
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {% if form.username.help_text %}
+                <small class="form-text text-muted">{{ form.username.help_text }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+            {% if form.password1.help_text %}
+                <small class="form-text text-muted">{{ form.password1.help_text }}</small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+            {% if form.password2.help_text %}
+                <small class="form-text text-muted">{{ form.password2.help_text }}</small>
+            {% endif %}
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn">登録</button>
+        </div> 
     </form>
-    <a href="{% url 'account:login' %}" class="btn-back">戻る</a>
-
-    {% if messages %}
-    {% comment %} <ul class="messages"> {% endcomment %}
-    <div class="alert alert-dismissible fade show" role="alert">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <div class="button-container">
+        <a href="{% url 'account:login' %}" class="btn-home">戻る</a>
+    </div>
 </div>
 {% endblock %}
+

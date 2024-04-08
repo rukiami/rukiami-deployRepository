@@ -117,7 +117,7 @@ def restaurant_list(request):
     # return render(request, 'restaurants/restaurant_list.html', {'restaurants': restaurants})
 
 def restaurant_detail(request, id):
-    restaurant = get_object_or_404(Restaurant, id=id)
+    restaurant = get_object_or_404(Restaurant, pk=id)
     return render(request, 'account/restaurant_detail.html', {'restaurant': restaurant})  
 
 def add_restaurant(request):
@@ -186,73 +186,40 @@ class RestaurantCreateView(CreateView):
     template_name = 'account/restaurant_form.html'  # お店登録用テンプレート
     success_url = reverse_lazy('account:restaurant_list') 
 
-# def register_restaurant(request):
+# def your_view(request):
 #     if request.method == 'POST':
-#         form = RestaurantForm(request.POST, request.FILES)
+#         # フォームのデータを取得
+#         form = add_restaurant(request.POST)
 #         if form.is_valid():
-#             form.save()
-#             return redirect('account:restaurant_list')  # 成功した場合のリダイレクト先
+#             # フォームのデータが有効な場合の処理
+#             ...
+#         else:
+#             # フォームのデータにエラーがある場合
+#             messages.error(request, 'フォームにエラーがあります。')
+#             return redirect('some_view_name')
 #     else:
 #         form = RestaurantForm()
-#     return render(request, 'account/register_restaurant.html')  # 適切な
 
-    # ビュー関数の内容...
-    # return render(request, 'account/register.html')
+#     context = {'form': form}
+#     return render(request, 'myapp/template.html', context)
 
-
-# @csrf_exempt
-# def add_event(request):
-#     if request.method == 'POST':
-#         # JSONの解析
-#         data = json.loads(request.body)
-#         # logger.info(f"Received data: {data}")  # ログに受け取ったデータを記録
-        
-#         # バリデーション
-#         event_form = EventForm(data)
-#         if not event_form.is_valid():
-#             return JsonResponse({'status': 'error', 'errors': event_form.errors}, status=400)
-        
-#         # EventFormがModelFormの場合、フォームから直接モデルを保存
-#         if hasattr(EventForm, 'save'):
-#             new_event = event_form.save()  # EventFormがModelFormの場合
-#         else:
-#             # EventFormがModelFormでない場合、ここでEventモデルインスタンスを直接作成します。
-       
-
-        
-    
-    
-#         # POST以外のメソッドでアクセスされた場合、エラーレスポンスを返す
-#         # 
-         
-
-
-
-# @csrf_exempt
-# def get_events(request):
-#     if request.method == 'POST':
-#         # JSONの解析
-#         data = json.loads(request.body)
-
-#         # 日付の変換
-#         start_date = time.strftime("%Y-%m-%d", time.localtime(data['start_date'] / 1000))
-#         end_date = time.strftime("%Y-%m-%d", time.localtime(data['end_date'] / 1000))
-
-#         # 指定された期間内のイベントを取得
-#         events = Event.objects.filter(start_date__gte=start_date, end_date__lte=end_date)
-
-#         # イベントデータの準備
-#         event_list = [{
-#             'title': event.event_name,
-#             'start': event.start_date,
-#             'end': event.end_date,
-#         } for event in events]
-
-#         # JSONで返す
-#         return JsonResponse(event_list, safe=False)
-#     else:
-#         # POST以外のメソッドでアクセスされた場合
-#         return JsonResponse({'status': 'error'}, status=400)
-
-# # イベント取得用のビューを追加していないため、必要に応じて追加してください。
-
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # ログインに成功したら、ホーム画面などにリダイレクト
+                return redirect('home')
+            else:
+                # ユーザー認証失敗のメッセージ
+                messages.error(request, 'ユーザー名かパスワードが間違っています。')
+        else:
+            # フォームが無効な場合
+            messages.error(request, 'エラーが発生しました。フォームを再確認してください。')
+    else:
+        form = LoginForm()
+    return render(request, 'account/login.html', {'form': form})

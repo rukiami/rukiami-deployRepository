@@ -29,6 +29,7 @@ path("", views.TopView.as_view(), name="top"),
     path('restaurant/<int:restaurant_id>/photos/', views.restaurant_photos, name='restaurant_photos'),
     path('restaurant/<int:restaurant_id>/add_photo/', views.add_photo, name='add_photo'),
     path('restaurant/add/', RestaurantCreateView.as_view(), name='restaurant_add'),
+    
     # path('get_events/', views.get_events, name='get_events'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

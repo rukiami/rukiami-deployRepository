@@ -9,15 +9,14 @@ body, html {
     padding: 10px 0; /* ヘッダーの上下パディング */
     text-align: center; /* テキストを中央揃え */
     width: 100%; /* 幅を100%に設定 */
-    margin: 0 auto; /* マージンを自動で上下左右に設定 */
-    border-radius: 0; /* 角の丸みをなくす */
+    margin: 0 auto; /* マージンを自動で上下左右に設定*/
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
 }
 
-.main-title {
+.main-title, .section-title {
     font-size: 24px; /* タイトルのフォントサイズ */
     text-align: center; /* タイトルを中央揃え */
-    margin: 20px 0; /* タイトルの上下マージン */
+    margin: auto; /* タイトルの上下マージン */
     margin-top: 30px;
     margin-bottom: 10px;
 }
@@ -63,7 +62,7 @@ body, html {
 }
 
 .btn-secondary {
-    background-color: #2196F3; /* セカンダリーボタンの背景色 */
+    background-color: #808080; /* セカンダリーボタンの背景色 */
     color: white; /* テキスト色 */
 }
 
@@ -76,12 +75,12 @@ body, html {
     opacity: 0.9; /* ホバー時の透明度 */
 }
 .container {
-    width: 90%; /* コンテナの幅 */
-    max-width: 1200px; /* コンテナの最大幅 */
-    margin: 20px auto; /* コンテナのマージンを上下に設定し、左右を自動で中央揃え */
-    padding: 20px; /* コンテナ内のパディング */
-    border: none; /* 枠線なし */
-    box-shadow: none; /* 影なし */
+    width: 100%; /* コンテナの幅をビューポート全体にします */
+    display: flex;
+    justify-content: center; /* 子要素を中央に揃えます */
+    align-items: center;
+    flex-direction: column;
+    
 }
 
 .alert {
@@ -244,5 +243,94 @@ h1, .main-title {
    
     margin-top: 20px; /* 上の余白 */
     margin-bottom: 20px; /* 下の余白 */
+}
+
+.form-group {
+    display: flex; /* Flexboxを使用 */
+    align-items: center; /* 縦方向の中央揃え */
+    margin-bottom: 10px; /* 下マージン */
+  }
+  
+.form-group label {
+    flex: 0 0 100px; /* ラベルの幅を固定 */
+    margin-right: 10px; /* ラベルと入力フィールドの間隔 */
+  }
+  
+.form-group input,
+.form-group select {
+    flex: 1; /* 入力フィールドが残りのスペースを埋める */
+    padding: 5px; /* パディング */
+    line-height: 1.5; /* 行の高さ */
+  }
+  
+  /* エラーメッセージやヘルプテキストなど、その他の補足情報のスタイルも調整する */
+.help-text {
+    font-size: 0.875em;
+    margin-top: 5px;
+  }
+  
+/* .error-message {
+    color: red;
+    font-size: 0.875em;
+  } */
+
+
+
+.form-text.text-muted {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 0.875em;
+}
+
+/* .alert.alert-danger {
+    margin-top: 5px;
+    font-size: 0.875em;
+}
+
+.errorlist {
+    color: red;
+  }
+  
+  /* Djangoがエラーをリストとして表示する場合のリストアイテムのスタイルも設定できます */
+/* .errorlist li {
+    color: red;
+  } */ 
+
+.image-container {
+    display: flex;
+    text-align: center; /* 画像を水平方向に中央に配置 */
+    width: 100%; /* コンテナの幅を全体に */
+}
+
+
+.image-container img {
+    max-width: 100%; /* 画像がコンテナより大きくならないようにする */
+    height: auto; /* アスペクト比を保持 */
+}
+
+/* CSSファイル */
+.required {
+    color: red;
+    margin-left: 3px;
+  }
+
+/* CSSファイル */
+.login-btn {
+    font-family: 'フォントファミリー', sans-serif; /* 望むフォントに変更してください */
+    font-weight: bold; /* フォントの太さを指定 */
+    /* 他に必要なスタイルがあればここに追加します */
+}
+
+.error-messages p {
+    color: red; /* テキストの色を赤に設定 */
+    background-color: #ffdddd; /* 背景色を薄い赤に設定 */
+    border: 1px solid red; /* 赤の境界線を設定 */
+    padding: 10px; /* 内側の余白を設定 */
+    margin: 10px 0; /* 外側の上下の余白を設定 */
+    border-radius: 5px; /* 角を丸くする */
+  }
+
+.errorlist {
+    color: red;
 }
 

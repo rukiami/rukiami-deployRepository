@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,19 +7,26 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'account/favicon.ico' %}">
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert {{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
 </head>
 <body>
-    {% comment %} <div class="header" style="background-color: coral; color: white; padding: 20px 0; text-align: center;"> {% endcomment %}
     <div class="header">   
         <h1>Only my gourmet note</h1>
     </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="container">
         {% block content %}
+        <div class="image-container" style="display: flex; justify-content: center;">
+            <img src="{% static 'path/to/your/image.jpg' %}" alt="説明文">
+        </div>
+        <!-- ここに各ページのコンテンツが挿入されます -->
         {% endblock %}
     </div>
 </body>

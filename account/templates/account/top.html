@@ -5,7 +5,12 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="my-5">グルメ記録アプリへようこそ</h1>
+    <h1 class="my-5">Welcome Only my gourmet note</h1>
+    <div class="welcome-comment-container"> 
+    <p class="app-description">
+        このアプリは自分だけのグルメノートが作れます。<br>
+        行って良かった、行ってみたいお店を登録しよう。
+    </p>
     <div class="button-container">    
         <a href="{% url 'account:login' %}" class="btn btn-outline-primary">ログイン</a>
         <a href="{% url 'account:signup' %}" class="btn btn-outline-primary">新規登録</a> 

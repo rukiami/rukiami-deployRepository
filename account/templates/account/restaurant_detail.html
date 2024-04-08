@@ -23,10 +23,7 @@
     {% endfor %}
   </div>
 
-  <!-- 作成日時と更新日時を表示 -->
-  <p>作成日時: {{ restaurant.created_at|date:"Y年m月d日 H:i" }}</p>
-  <p>更新日時: {{ restaurant.updated_at|date:"Y年m月d日 H:i" }}</p>
-
+  
   <div class="edit-delete-button-container">
     <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-primary">写真を追加</a>
     <a href="{% url 'account:edit_restaurant' restaurant.id %}" class="btn btn-secondary">店舗情報を編集</a>

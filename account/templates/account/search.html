@@ -11,19 +11,25 @@
             <input type="text" id="query" name="q" class="form-control" placeholder="Enter search term...">
         </div>
         <button type="submit" class="btn btn-primary">検索</button>
-        <button type="button" class="btn btn-secondary" onclick="history.back()">ホームに戻る</button>
-        {% comment %} <a href="javascript:history.back()" class="btn btn-home">ホームに戻る</a> {% endcomment %}
+        {% comment %} <button type="button" class="btn btn-secondary" onclick="history.back()">ホームに戻る</button> {% endcomment %}
     </form>
 
     {% if query %}
-    <h2>検索結果 "{{ query }}":</h2>
+    <h2>検索結果 "{{ query }}" :</h2>
+    {% if results %}
     <ul>
-        {% for result in results %}
-        <li>{{ result }}</li>
-        {% empty %}
-        <li>No results found.</li>
-        {% endfor %}
+    {% for result in results %}
+    <li>
+        <a href="{% url 'account:restaurant_detail' result.pk %}">{{ result.name }}</a> - {{ result.genre }} - {{ result.location }}
+    </li>
+    {% endfor %}
     </ul>
+    {% else %}
+    <p>一致するレストランが見つかりませんでした。</p>
     {% endif %}
+    {% endif %}
+
+    <!-- ここで一覧に戻るボタンがあると仮定します -->
+    <a href="{% url 'account:restaurant_list' %}" class="btn-home">レストラン一覧に戻る</a>
 </div>
-{% endblock %}
+{% endblock %}   
