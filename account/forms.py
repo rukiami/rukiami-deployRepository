@@ -113,8 +113,10 @@ class RestaurantForm(forms.ModelForm):
 def __init__(self, *args, **kwargs):
     super(RestaurantForm, self).__init__(*args, **kwargs)
     self.fields['name'].help_text = '*は必須です'
-        # self.fields['genre'] = forms.ChoiceField(choices=self.GENRE_CHOICES, label='ジャンル')
-        # self.fields['price_range'] = forms.ChoiceField(choices=self.PRICE_RANGE_CHOICES, label='価格帯')
+    self.fields['google_maps_url'].widget.attrs.update({'class': 'form-control'})
+    self.fields['website_url'].widget.attrs.update({'class': 'form-control'})
+        # 他のフィールドに対しても必要に応じて同じ操作を行う
+        
 
         
 from .models import Photo
@@ -124,18 +126,3 @@ class PhotoForm(forms.ModelForm):
         fields = ['image']     
 
 
-# class EventForm(forms.ModelForm):
-#    start_date = forms.IntegerField(required=True)
-#    end_date = forms.IntegerField(required=True)
-#    event_name = forms.CharField(required=True, max_length=32)         
-#    location = forms.CharField(required=False, max_length=100)  # 場所を追加
-
-# from .models import Event
-# class EventForm(forms.ModelForm):
-#     class Meta:
-#         model = Event
-#         fields = ['event_name', 'start_date', 'end_date', 'location', 'genre', 'price_range']
-#         widgets = {
-#             'start_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
-#             'end_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
-#         }    

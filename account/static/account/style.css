@@ -36,7 +36,7 @@ body, html {
     margin-bottom: 20px; /* 下に余白を追加 */
 }
 
-/* 「レストラン一覧に戻る」ボタン用のスタイル */
+/* 「レストラン一覧に戻る」ボタン用のスタイル
 .back-button-container {
     display: flex;
     justify-content: center;
@@ -45,7 +45,31 @@ body, html {
     left: 0;
     right: 0;
     bottom: 10px; /* 下端からの余白 */ 
-}
+
+.back-button-container {
+    width: 100%; /* 必要に応じて幅を調整 */
+    display: flex;
+    justify-content: center; /* ボタンをFlexコンテナの中央に配置 */
+    padding-top: 20px; /* 必要に応じてパディングを調整 */
+    }
+      
+     
+      
+.input-class {
+    width: 100%; /* 必要に応じて幅を調整 */
+    }
+.btn {
+    padding: .5rem 1rem; /* パディング */
+    font-size: 1rem; /* フォントサイズ */
+    color: #fff; /* 文字色 */
+    background-color: #007bff; /* 背景色 */
+    border: none; /* ボーダー無し */
+    border-radius: .25rem; /* 角丸 */
+    cursor: pointer; /* カーソルをポインターに */
+    line-height: 1.5; /* 行の高さ */
+    text-align: center; /* テキスト中央揃え */
+    }
+      
 
 /* ボタン共通のスタイル */
 .btn, .btn-primary, .btn-secondary, .btn-danger {
@@ -245,23 +269,8 @@ h1, .main-title {
     margin-bottom: 20px; /* 下の余白 */
 }
 
-.form-group {
-    display: flex; /* Flexboxを使用 */
-    align-items: center; /* 縦方向の中央揃え */
-    margin-bottom: 10px; /* 下マージン */
-  }
-  
-.form-group label {
-    flex: 0 0 100px; /* ラベルの幅を固定 */
-    margin-right: 10px; /* ラベルと入力フィールドの間隔 */
-  }
-  
-.form-group input,
-.form-group select {
-    flex: 1; /* 入力フィールドが残りのスペースを埋める */
-    padding: 5px; /* パディング */
-    line-height: 1.5; /* 行の高さ */
-  }
+
+
   
   /* エラーメッセージやヘルプテキストなど、その他の補足情報のスタイルも調整する */
 .help-text {
@@ -269,11 +278,6 @@ h1, .main-title {
     margin-top: 5px;
   }
   
-/* .error-message {
-    color: red;
-    font-size: 0.875em;
-  } */
-
 
 
 .form-text.text-muted {
@@ -281,20 +285,6 @@ h1, .main-title {
     margin-bottom: 5px;
     font-size: 0.875em;
 }
-
-/* .alert.alert-danger {
-    margin-top: 5px;
-    font-size: 0.875em;
-}
-
-.errorlist {
-    color: red;
-  }
-  
-  /* Djangoがエラーをリストとして表示する場合のリストアイテムのスタイルも設定できます */
-/* .errorlist li {
-    color: red;
-  } */ 
 
 .image-container {
     display: flex;
@@ -314,23 +304,142 @@ h1, .main-title {
     margin-left: 3px;
   }
 
-/* CSSファイル */
-.login-btn {
-    font-family: 'フォントファミリー', sans-serif; /* 望むフォントに変更してください */
-    font-weight: bold; /* フォントの太さを指定 */
-    /* 他に必要なスタイルがあればここに追加します */
+
+
+.btn-primary.login-btn {
+    width: 70%;
+    display: inline-block; 
 }
 
-.error-messages p {
-    color: red; /* テキストの色を赤に設定 */
-    background-color: #ffdddd; /* 背景色を薄い赤に設定 */
-    border: 1px solid red; /* 赤の境界線を設定 */
-    padding: 10px; /* 内側の余白を設定 */
-    margin: 10px 0; /* 外側の上下の余白を設定 */
+/* 全てのフォーム要素に一貫したスタイリングを適用 */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中央揃え */
+}
+
+/* テキストフィールドとエラーメッセージの幅を統一 */
+.form-control, .error-message {
+    width: 300px; /* 幅を統一 */
+    margin-bottom: 10px; /* 余白を適宜調整 */
+}
+
+/* テキストボックスとボタンの配置を調整 */
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group button {
+    margin: 0 auto; /* 自動マージンで中央揃え */
+    display: block; /* ブロック要素として表示 */
+}
+
+/* エラーメッセージのスタイル */
+.error-message {
+    color: red; /* 文字色を赤に */
+    text-align: center; /* 中央揃え */
+    display: block; /* デフォルトでは非表示 */
+    height: auto; /* 高さを自動で調整する */
+    margin-top: 10px; /* テキストボックスとの間隔 */
+
+
+}
+
+/* エラーがある場合のテキストボックスのスタイル */
+.has-error .form-control {
+    border: 1px solid red; /* ボーダーを赤色に */
+}
+
+/* エラーがある場合にエラーメッセージを表示 */
+.has-error .error-message {
+    display: block; /* 表示 */
+}
+
+/* ログインボタンのスタイル */
+.btn-login {
+    width: 300px; /* 幅を300pxに設定 */
+    padding: 10px; /* パディングを設定 */
+    /* 他のスタイルは必要に応じて */
+}
+
+
+/* フォーム要素全般のスタイルを適用 */
+.form-control {
+    font-family: Arial, sans-serif; /* フォントファミリー */
+    font-size: 1rem; /* フォントサイズ */
+    color: #333; /* フォントの色 */
+    padding: .5rem; /* 内側の余白 */
+    border: 1px solid #ddd; /* ボーダー */
+    border-radius: .25rem; /* 角丸 */
+    width: 100%; /* 幅を親要素いっぱいに広げる */
+    margin-bottom: .5rem; /* 下余白 */
+}
+
+
+
+
+/* ボタンの基本スタイル */
+.btn {
+    padding: 10px 15px; /* ボタンの内側の余白 */
+    border: none; /* ボーダーを消す */
     border-radius: 5px; /* 角を丸くする */
+    cursor: pointer; /* カーソルを指マークにする */
+    transition: all 0.3s ease; /* トランジション効果 */
+    font-weight: bold; /* 文字を太くする */
+}
+
+/* 新規追加ボタン */
+.btn-add {
+    background-color: #4CAF50; /* 緑色 */
+    color: white; /* 文字色は白 */
+}
+
+/* 編集ボタン */
+.btn-edit {
+    background-color: #f0ad4e; /* オレンジ色 */
+    color: white; /* 文字色は白 */
+}
+
+/* 削除ボタン */
+.btn-delete {
+    background-color: #d9534f; /* 赤色 */
+    color: white; /* 文字色は白 */
+}
+
+/* ボタンがホバーされた時のスタイル */
+.btn:hover {
+    opacity: 0.8; /* 透明度を下げる */
+}
+
+/* ここからボタンを横に並べるスタイル */
+.button-group {
+    display: flex; /* Flexboxを使って横に並べる */
+    gap: 10px; /* ボタンの間に余白を作る */
+    justify-content: center; /* 中央揃えにする */
+}
+
+/* ラベルとテキストボックスが縦に一列になるようにする */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 左揃えで要素を配置 */
+    width: 100%; /* フォームグループの幅を100%に設定 */
+    margin-bottom: 1rem; /* 各フォームグループの下マージンを設定 */
+  }
+  
+  /* ラベルのスタイルを調整 */
+.form-group label {
+    margin-bottom: 0.5rem; /* ラベルの下マージンを設定 */
+  }
+  
+  /* テキストボックスとセレクトボックスのスタイルを調整 */
+.form-group input[type="text"],
+.form-group select {
+    width: 100%; /* 幅を100%に設定 */
+    padding: 0.5rem; /* パディングを設定 */
+    border: 1px solid #ccc; /* 境界線を設定 */
+    border-radius: 0.25rem; /* 角の丸みを設定 */
   }
 
-.errorlist {
-    color: red;
-}
 
+
+
+  

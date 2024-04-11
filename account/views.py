@@ -116,21 +116,48 @@ def restaurant_list(request):
     return render(request, 'account/restaurant_list.html', {'restaurants': restaurants})
     # return render(request, 'restaurants/restaurant_list.html', {'restaurants': restaurants})
 
-def restaurant_detail(request, id):
-    restaurant = get_object_or_404(Restaurant, pk=id)
-    return render(request, 'account/restaurant_detail.html', {'restaurant': restaurant})  
+def restaurant_detail(request, pk):
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    photos = restaurant.photos.all()  # `related_name`を使って写真を取得
+    context = {
+        'restaurant': restaurant,
+        'photos': photos,
+
+
+    }
+    return render(request, 'account/restaurant_detail.html', {'restaurant': restaurant, 'photos': photos})
+
+# def restaurant_detail(request, id):
+#     restaurant = get_object_or_404(Restaurant, pk=id)
+#     return render(request, 'account/restaurant_detail.html', {'restaurant': restaurant})  
+
+# def add_restaurant(request):
+#     if request.method == 'POST':
+#         form = RestaurantForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('account:restaurant_list')
+
+#             # return redirect('account:restaurant_list')  # 保存後にリダイレクトするページ
+#     else:
+#         form = RestaurantForm()
+#     return render(request, 'account/add_restaurant.html', {'form': form})
 
 def add_restaurant(request):
     if request.method == 'POST':
-        form = RestaurantForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('account:restaurant_list')
-
-            # return redirect('account:restaurant_list')  # 保存後にリダイレクトするページ
+        restaurant_form = RestaurantForm(request.POST)
+        photo_form = PhotoForm(request.POST, request.FILES)
+        if restaurant_form.is_valid() and photo_form.is_valid():
+            restaurant = restaurant_form.save()
+            photo = photo_form.save(commit=False)
+            photo.restaurant = restaurant
+            photo.save()
+            return redirect('account:restaurant_detail', pk=restaurant.id)
     else:
-        form = RestaurantForm()
-    return render(request, 'account/add_restaurant.html', {'form': form})
+        restaurant_form = RestaurantForm()
+        photo_form = PhotoForm()
+    return render(request, 'account/add_restaurant.html', {'restaurant_form': restaurant_form, 'photo_form': photo_form})
+
 
 def edit_restaurant(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
@@ -138,10 +165,19 @@ def edit_restaurant(request, id):
         form = RestaurantForm(request.POST, request.FILES, instance=restaurant)
         if form.is_valid():
             form.save()
-            return redirect('account:restaurant_detail', id=restaurant.id)
+            return redirect('account:restaurant_detail', pk=restaurant.id)
     else:
         form = RestaurantForm(instance=restaurant)
     return render(request, 'account/edit_restaurant.html', {'form': form, 'restaurant': restaurant})
+
+
+def restaurant_detail(request, pk):
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    photos = restaurant.photos.all()  # すべての写真を取得する
+    return render(request, 'account/restaurant_detail.html', {
+      'restaurant': restaurant,
+        'photos': photos,   
+    })
 
 def delete_restaurant(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
@@ -186,22 +222,7 @@ class RestaurantCreateView(CreateView):
     template_name = 'account/restaurant_form.html'  # お店登録用テンプレート
     success_url = reverse_lazy('account:restaurant_list') 
 
-# def your_view(request):
-#     if request.method == 'POST':
-#         # フォームのデータを取得
-#         form = add_restaurant(request.POST)
-#         if form.is_valid():
-#             # フォームのデータが有効な場合の処理
-#             ...
-#         else:
-#             # フォームのデータにエラーがある場合
-#             messages.error(request, 'フォームにエラーがあります。')
-#             return redirect('some_view_name')
-#     else:
-#         form = RestaurantForm()
 
-#     context = {'form': form}
-#     return render(request, 'myapp/template.html', context)
 
 def login_view(request):
     if request.method == 'POST':

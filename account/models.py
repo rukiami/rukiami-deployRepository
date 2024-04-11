@@ -1,21 +1,10 @@
 from django.db import models
 from django.utils import timezone
 # Create your models here.
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
-# class Event(models.Model):
-#     # event_name = models.CharField(max_length=100)
-#     # start_date = models.DateField()
-#     # end_date = models.DateField()
-#     location = models.CharField(max_length=100)
-#     genre = models.CharField(max_length=100, default='Not specified')
-#     price_range = models.CharField(max_length=50)
-#     # created_at = models.DateTimeField(auto_now_add=True)
-   
-
-    # def __str__(self):
-    #     return self.event_name  # 管理画面などでオブジェクトを表示する際の文字列
-    # some_field_name  # 'title' フィールドがあると仮定
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100, verbose_name='店名')
@@ -32,11 +21,13 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.name
+    
+    pass
 
     
 class Photo(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='photos')
-    image = models.ImageField(upload_to='restaurant_photos/')
+    restaurant = models.ForeignKey(Restaurant, related_name='photos', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='restaurant_photos')
     
     
     def __str__(self):
@@ -44,25 +35,15 @@ class Photo(models.Model):
         # return f"{self.restaurant.name} - {self.caption[:20]}"       
 
 
+# シグナルを使用してレストランが保存されたときに写真を追加
+@receiver(post_save, sender=Restaurant)
+def create_default_photo(sender, instance, created, **kwargs):
+    if created:
+        Photo.objects.create(restaurant=instance)
 
 
 
 
 
-# class Post(models.Model):
-#     # 既存のフィールド
-#     title = models.CharField(max_length=100)
-#     content = models.TextField()
-    
-    # 追加するフィールド
-    # created_at = models.DateTimeField(auto_now_add=True)
-
-# class Comment(models.Model):
-#     # 既存のフィールド
-#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-#     content = models.TextField()
-
-    # 追加するフィールド
-    # created_at = models.DateTimeField(auto_now_add=True)
 
 

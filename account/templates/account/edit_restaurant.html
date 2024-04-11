@@ -7,28 +7,17 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">保存</button>
+        <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a>
         {% comment %} <button type="submit" class="btn">保存</button> {% endcomment %}
-        <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">ホームに戻る</a>
+        {% comment %} <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">ホームに戻る</a> {% endcomment %}
 
     </form>
-        {% comment %} <button type="submit">保存</button> {% endcomment %}
-        {% comment %} <button class="btn">保存</button>
-        <button class="btn">戻る</button>
-        
-    </form>
-    {% endcomment %}
+   
     
     <!-- 編集フォームの下部 -->
     <form action="{% url 'account:restaurant_delete' restaurant.id %}" method="post" onsubmit="return confirm('本当に削除しますか？');">
     {% csrf_token %}
-    <input type="submit" value="削除" class="btn btn-danger">
-    {% comment %} <textarea name="location" class="shorter-width"></textarea> {% endcomment %}
-
-
-
-    {% comment %} <form method="post" action="{% url 'account:delete_restaurant' restaurant.id %}">
-        {% csrf_token %}
-        <button type="submit">削除</button> {% endcomment %}
+    {% comment %} <input type="submit" value="削除" class="btn btn-danger"> {% endcomment %}
     </form>
 </div>
 {% endblock %}

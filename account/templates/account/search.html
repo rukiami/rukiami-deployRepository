@@ -25,11 +25,11 @@
     {% endfor %}
     </ul>
     {% else %}
-    <p>一致するレストランが見つかりませんでした。</p>
+    <p class="no-results">一致するレストランが見つかりませんでした。</p>
     {% endif %}
     {% endif %}
 
     <!-- ここで一覧に戻るボタンがあると仮定します -->
-    <a href="{% url 'account:restaurant_list' %}" class="btn-home">レストラン一覧に戻る</a>
+    <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a>
 </div>
 {% endblock %}   
