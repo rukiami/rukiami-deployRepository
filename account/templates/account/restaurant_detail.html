@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container">
+
   <h1>{{ restaurant.name }}</h1>
   <p>場所: {{ restaurant.location }}</p>
   <p>ジャンル: {{ restaurant.genre }}</p>
@@ -13,21 +14,20 @@
   {% if restaurant.url %}
   <p>ウェブサイト: <a href="{{ restaurant.url }}" target="_blank" rel="noopener noreferrer">{{ restaurant.url }}</a></p>  
   {% endif %}
+
   <div class="photos">
     {% for photo in restaurant.photos.all %}
        <div class="photo">
          {% if photo.image %}
           <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}" style="max-width: 200px; height: auto;">
       {% else %}
-          <p>画像がアップロードされていません。</p>
-          {% comment %} <a href="{{ photo.image.url }}" target="_blank">画像を見る</a> {% endcomment %}
+        {% comment %} <p>画像がアップロードされていません。</p> {% endcomment %}
       {% endif %}
-  </div>
-{% empty %}
-  <p>写真はまだありません。</p>
-{% endfor %}      
-
-
+    </div> 
+ {% empty %}
+   <p>写真はまだありません。</p>
+ {% endfor %} 
+</div>
 
 <div class="edit-delete-button-container">
     <a href="{% url 'account:add_photo' restaurant.id %}" class="btn btn-add">写真を追加</a>
@@ -37,7 +37,8 @@
       {% csrf_token %}
       <input type="submit" value="削除" class="btn btn-delete" onclick="return confirm('本当にこのレストランを削除しますか？');">
   </div>
-  <div class="back-button-container">
+  <div class="centered-button-container">
+  {% comment %} <div class="back-button-container"> {% endcomment %}
     <a href="{% url 'account:restaurant_list' %}" class="btn btn-back-list">レストラン一覧に戻る</a>
   </div>
 </div>

@@ -311,18 +311,6 @@ h1, .main-title {
     display: inline-block; 
 }
 
-/* 全てのフォーム要素に一貫したスタイリングを適用 */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 中央揃え */
-}
-
-/* テキストフィールドとエラーメッセージの幅を統一 */
-.form-control, .error-message {
-    width: 300px; /* 幅を統一 */
-    margin-bottom: 10px; /* 余白を適宜調整 */
-}
 
 /* テキストボックスとボタンの配置を調整 */
 .form-group input[type="text"],
@@ -371,6 +359,9 @@ h1, .main-title {
     border-radius: .25rem; /* 角丸 */
     width: 100%; /* 幅を親要素いっぱいに広げる */
     margin-bottom: .5rem; /* 下余白 */
+    width: 300px;
+    margin: auto; /* 中央揃え */
+    display: block; 
 }
 
 
@@ -427,18 +418,59 @@ h1, .main-title {
   
   /* ラベルのスタイルを調整 */
 .form-group label {
+    display: block; 
     margin-bottom: 0.5rem; /* ラベルの下マージンを設定 */
   }
   
-  /* テキストボックスとセレクトボックスのスタイルを調整 */
-.form-group input[type="text"],
-.form-group select {
-    width: 100%; /* 幅を100%に設定 */
-    padding: 0.5rem; /* パディングを設定 */
-    border: 1px solid #ccc; /* 境界線を設定 */
-    border-radius: 0.25rem; /* 角の丸みを設定 */
-  }
 
+
+.input-class {
+    width: 300px; /* ログインとパスワードのフィールドの幅を300pxに設定 */
+    margin-bottom: 10px; /* マージンを設定して間隔を整えます */
+    /* その他必要に応じてスタイルを追加 */
+}
+
+
+.form-group input[type="password"] {
+    width: 300px; /* これにより、幅を300pxに統一します。 */
+    margin: 0 auto; /* フォーム要素を中央に揃えます。 */
+    display: block; /* ブロック要素として表示します。 */
+}
+
+.form-group input[type="username"] {
+    width: 300px; /* これにより、幅を300pxに統一します。 */
+    margin: 0 auto; /* フォーム要素を中央に揃えます。 */
+    display: block; /* ブロック要素として表示します。 */
+}
+
+
+
+
+/* ボタンの幅をテキストボックスと同じにする */
+.btn-login {
+    width: 300px; /* 幅を300pxに設定 */
+    /* その他のスタイルはそのままにする */
+}
+
+/* エラーメッセージの幅も合わせる */
+.error-message {
+    width: 300px; /* 幅を300pxに設定 */
+    margin: 0 auto; /* 中央揃えにするためのマージン設定 */
+}
+
+.button-container, .form-group {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    margin-bottom: 15px;
+}
+
+.centered-button-container {
+    display: flex;
+    justify-content: center; /* ボタンを中央に配置 */
+    margin-top: 20px; /* ボタンの上の余白 */
+}
 
 
 

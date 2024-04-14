@@ -1,24 +1,49 @@
-<!-- 例えば add_restaurant.html -->
 {% extends "account/base.html" %}
 <div class="container">
-  <h1>店舗登録</h1>
+  <h1>レストラン登録</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+   
     {% for field in form %}
       <div class="form-group">
-        {{ field.label_tag }} {% if field.field.required %}<span class="required">*</span>{% endif %}
-        {{ field }}
+        {{ field.label_tag }}
+        {% if "image" in field.label_tag %}
+          <!-- Special handling for image field to add onchange event -->
+          <input type="file" name="{{ field.name }}" id="id_{{ field.name }}" accept="image/*" onchange="previewImage(event)">
+          <img id="preview" src="#" alt="Image preview" style="max-width: 200px; height: auto; display: none;">
+        {% else %}
+          {{ field }}
+        {% endif %}
         {% if field.help_text %}
           <small class="form-text text-muted">{{ field.help_text }}</small>
         {% endif %}
-        {% for error in field.errors %}
-          <div class="alert alert-danger">{{ error }}</div>
-        {% endfor %}
+        {% if field.errors %}
+          <div class="alert alert-danger">
+            {% for error in field.errors %}
+              {{ error }}
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     {% endfor %}
     <button type="submit" class="btn btn-primary">登録</button>
   </form>
-  <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+  <div class="centered-button-container">
+    <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
+  </div>
 </div>
 {% endblock %}
 
+{% block javascript %}
+<script>
+  function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+      var output = document.getElementById('preview');
+      output.src = reader.result;
+      output.style.display = 'block';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+{% endblock %}

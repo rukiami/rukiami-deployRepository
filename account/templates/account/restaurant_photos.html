@@ -11,15 +11,17 @@
         <div class="photo">
             <!-- 画像が存在するかどうかを確認し、存在する場合にのみ表示 -->
             {% if photo.image %}
-                <img src="{{ photo.image.url }}" alt="{{ restaurant.name }}" style="max-width: 200px; height: auto;">
+                <img src="{{ photo.image.url }}" alt="レストランの写真">
+                {% comment %} <img src="{{ photo.image.url }}" alt="Description" style="max-width: 200px; height: auto;"> {% endcomment %}
             {% else %}
                 <p>画像がアップロードされていません。</p>
-                {% comment %} <a href="{{ photo.image.url }}" target="_blank">画像を見る</a> {% endcomment %}
+
             {% endif %}
         </div>
     {% empty %}
         <p>写真はまだありません。</p>
     {% endfor %}      
+    <div class="centered-button-container">
     <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
     {% comment %} <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">ホームに戻る</a> {% endcomment %}
 </div>

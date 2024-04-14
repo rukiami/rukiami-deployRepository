@@ -7,6 +7,7 @@
     <h2>レストラン一覧</h2>  
 
     <ul class="restaurant-list">
+      
       {% for restaurant in restaurants %} 
         <li>
           <a href="{% url 'account:restaurant_detail' restaurant.id %}">
@@ -24,7 +25,8 @@
       {% endfor %}
     </ul>
 
-    <div class="back-button-container"> 
+    <div class="centered-button-container">
+      {% comment %} <div class="back-button-container">  {% endcomment %}
       {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
       {% comment %} <button type="button" onclick="history.back()" class="btn-home">ホームに戻る</button> {% endcomment %}
       <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a>

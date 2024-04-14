@@ -7,6 +7,7 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs["class"] = "form-control"
+            widget=forms.TextInput(attrs={'class': 'form-control'}) # こ
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -21,7 +22,8 @@ class SignUpForm(UserCreationForm):
     username = forms.CharField(
         max_length=150, 
         help_text='半角英数字であること、記号は含まないこと。',
-        label='ユーザー名'
+        label='ユーザー名',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     password1 = forms.CharField(
         widget=forms.PasswordInput,
@@ -123,6 +125,14 @@ from .models import Photo
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
-        fields = ['image']     
+        fields = ['image']  
+
+from django import forms
+
+class ExampleForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    photo = forms.ImageField()
+
+
 
 
