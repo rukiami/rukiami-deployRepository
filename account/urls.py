@@ -18,10 +18,8 @@ path("", views.TopView.as_view(), name="top"),
     path("login/", views.LoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("signup/", views.SignUpView.as_view(), name="signup"),
-
     path('restaurant/', views.restaurantListView.as_view(), name='restaurant_list'),
     path('search/', views.search_view, name='search'), 
-
     path('restaurants/<int:pk>/', views.restaurant_detail, name='restaurant_detail'),
     path('add_restaurant/', views.add_restaurant, name='add_restaurant'),
     path('restaurant/edit/<int:id>/', views.edit_restaurant, name='edit_restaurant'),
