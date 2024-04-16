@@ -27,12 +27,14 @@
                 <small class="form-text text-muted">{{ form.password2.help_text }}</small>
             {% endif %}
         </div>
-        <div class="button-container">
-            <button type="submit" class="btn">登録</button>
+        
+        <div class="centered-container">
+            <button type="submit" class="btn btn-primary">登録</button>
+            
         </div> 
     </form>
-    <div class="button-container">
-        <a href="{% url 'account:login' %}" class="btn-home">戻る</a>
+    <div class="centered-button-container">
+        <a href="{% url 'account:login' %}" class="btn btn-home">戻る</a>
     </div>
 </div>
 <style>

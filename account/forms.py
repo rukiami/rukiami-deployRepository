@@ -94,6 +94,7 @@ class RestaurantForm(forms.ModelForm):
         if google_maps_url and not google_maps_url.startswith('https://www.google.com/maps'):
             raise ValidationError(_('無効なGoogleマップURLです。正しいURLを入力してください。'))
         return google_maps_url
+    
 
   
 
@@ -107,7 +108,7 @@ class RestaurantForm(forms.ModelForm):
             'location': '場所',
             'genre': 'ジャンル',
             'price_range': '価格帯',
-            'url': 'ウェブサイトURL',  # これも追加
+            'url': 'ウェブサイトURL',
             'google_maps': 'Googleマップ',
             'photo': '写真'
             
@@ -118,7 +119,7 @@ def __init__(self, *args, **kwargs):
     self.fields['google_maps_url'].widget.attrs.update({'class': 'form-control'})
     self.fields['website_url'].widget.attrs.update({'class': 'form-control'})
         # 他のフィールドに対しても必要に応じて同じ操作を行う
-        
+
 
         
 from .models import Photo

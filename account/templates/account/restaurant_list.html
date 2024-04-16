@@ -21,7 +21,9 @@
           {% endif %}
         </li>
         {% empty %}
-        <p>まだ登録はありません</p>
+        <div class="centered-content">
+          <p class="centered-text">まだ登録はありません</p>
+        
       {% endfor %}
     </ul>
 
@@ -29,7 +31,7 @@
       {% comment %} <div class="back-button-container">  {% endcomment %}
       {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
       {% comment %} <button type="button" onclick="history.back()" class="btn-home">ホームに戻る</button> {% endcomment %}
-      <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a>
+      <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
         {% comment %} <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a> {% endcomment %}
     </div>
   </div>

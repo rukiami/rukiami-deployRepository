@@ -10,6 +10,8 @@
             <label for="query">検索ワード:</label>
             <input type="text" id="query" name="q" class="form-control" placeholder="Enter search term...">
         </div>
+        <div class="button-container">
+
         <button type="submit" class="btn btn-primary">検索</button>
         {% comment %} <button type="button" class="btn btn-secondary" onclick="history.back()">ホームに戻る</button> {% endcomment %}
     </form>
@@ -31,6 +33,6 @@
 
    
     <div class="centered-button-container">
-    <a href="{% url 'account:home' %}" class="btn-home">ホームに戻る</a>
+    <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
 </div>
 {% endblock %}   

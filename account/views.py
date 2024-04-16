@@ -141,7 +141,8 @@ def restaurant_detail(request, pk):
 #             # return redirect('account:restaurant_list')  # 保存後にリダイレクトするページ
 #     else:
 #         form = RestaurantForm()
-#     return render(request, 'account/add_restaurant.html', {'form': form})
+# #     return render(request, 'account/add_restaurant.html', {'form': form})
+
 
 def add_restaurant(request):
     if request.method == 'POST':
@@ -197,7 +198,7 @@ def restaurant_photos(request, restaurant_id):
             photo = form.save(commit=False)
             photo.restaurant = restaurant
             photo.save()
-            return redirect('restaurant_photos', restaurant_id=restaurant_id)
+            return redirect('account:restaurant_photos', restaurant_id=restaurant_id)
     else:
         form = PhotoForm()
     return render(request, 'account/restaurant_photos.html', {'restaurant': restaurant, 'photos': photos, 'form': form})
@@ -214,6 +215,22 @@ def add_photo(request, restaurant_id):
     else:
         form = PhotoForm()
     return render(request, 'account/add_photo.html', {'form': form, 'restaurant': restaurant})
+
+# def add_photo(request, restaurant_id):
+#     if request.method == 'POST':
+#         form = PhotoForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             photo = form.save(commit=False)
+#             photo.restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+
+#             # photo.restaurant_id = restaurant_id
+#             photo.save()
+#             # リダイレクトする先のURLを指定
+#             return redirect('account:restaurant_photos', restaurant_id=photo.restaurant.id)
+#     else:
+#         form = PhotoForm()
+#     return render(request, 'account/add_photo.html', {'form': form})
+
 
 
 class RestaurantCreateView(CreateView):

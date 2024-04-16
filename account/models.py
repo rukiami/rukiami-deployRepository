@@ -14,10 +14,11 @@ class Restaurant(models.Model):
     category = models.CharField(max_length=50, default='未指定', verbose_name='カテゴリー')  # デフォルト値を '未指定' に設定
     price_range = models.CharField(max_length=50, blank=True, null=True, verbose_name='価格帯')
     google_maps = models.TextField(blank=True, null=True)
-    photo = models.ImageField(upload_to='restaurant_photos/', blank=True, null=True)
+    # photo = models.ImageField(upload_to='restaurant_photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='restaurant_photos/')
     url = models.URLField(max_length=200, blank=True, null=True)
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True)
+    # created_at = models.DateTimeField(default=timezone.now)
+    # updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -27,7 +28,7 @@ class Restaurant(models.Model):
     
 class Photo(models.Model):
     restaurant = models.ForeignKey(Restaurant, related_name='photos', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='restaurant_photos')
+    image = models.ImageField(upload_to='restaurant_photos/')
     
     
     def __str__(self):

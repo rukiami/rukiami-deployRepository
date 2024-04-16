@@ -8,8 +8,10 @@
         {{ form.errors }}
         {{ form.as_p }}
         <img id="image-preview" src="#" alt="Image preview" style="max-width: 200px; height: auto; display: none;"/>
+        <div class="button-container">
         <button type="submit" class="btn btn-primary">アップロード</button>
-        <a href="{% url 'account:restaurant_list' %}" class="btn-home">ホームに戻る</a>
+        <div class="centered-button-container">
+        <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">ホームに戻る</a>
     </form>
 </div>
 

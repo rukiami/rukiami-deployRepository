@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <h2>レストラン登録</h2>
-    <form method="post" class="form">
+    <form method="post" enctype="multipart/form-data" style="max-width: 500px; margin: auto;">
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
@@ -19,11 +19,14 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">登録</button>
-        </div>
-        <div class="centered-button-container">
+        {% comment %} <div class="centered-button-container"> {% endcomment %}
+            <div class="button-container">
         {% comment %} <div class="form-group"> {% endcomment %}
+            <button type="submit" class="btn btn-primary">登録</button>
+        {% comment %} </div>
+        <div class="centered-button-container"> {% endcomment %}
+        {% comment %} <div class="form-group"> {% endcomment %}
+            <div class="centered-button-container">
             <a href="{% url 'account:home' %}" class="btn btn-home">ホームに戻る</a>
         </div>
     </form>

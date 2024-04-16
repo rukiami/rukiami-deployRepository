@@ -21,9 +21,12 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary login-btn">ログイン</button>
+        <div class="centered-container">
+            <form action="/your-login-endpoint/" method="post">
+            <button type="submit" class="btn btn-primary">ログイン</button>
+        {% comment %} <button type="submit" class="btn btn-primary login-btn">ログイン</button> {% endcomment %}
     </form>
-    
+    <p class="centered">
     <div style="margin-top: 20px;">
         アカウントをお持ちでない方は<a href="{% url 'account:signup' %}">こちらから新規登録</a>してください。
     </div>

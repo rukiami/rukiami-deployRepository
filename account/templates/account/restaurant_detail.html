@@ -19,13 +19,16 @@
     {% for photo in restaurant.photos.all %}
        <div class="photo">
          {% if photo.image %}
+         
+         {% comment %} <input type="file" id="file-input" accept="image/*"> {% endcomment %}
           <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}" style="max-width: 200px; height: auto;">
       {% else %}
-        {% comment %} <p>画像がアップロードされていません。</p> {% endcomment %}
+        
       {% endif %}
     </div> 
  {% empty %}
-   <p>写真はまだありません。</p>
+
+  <p>写真はまだありません。</p> 
  {% endfor %} 
 </div>
 
@@ -39,7 +42,7 @@
   </div>
   <div class="centered-button-container">
   {% comment %} <div class="back-button-container"> {% endcomment %}
-    <a href="{% url 'account:restaurant_list' %}" class="btn btn-back-list">レストラン一覧に戻る</a>
+    <a href="{% url 'account:restaurant_list' %}" class="btn btn-home">レストラン一覧に戻る</a>
   </div>
 </div>
 {% endblock %}
