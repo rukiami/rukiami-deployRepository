@@ -1,13 +1,51 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
+
 class LoginForm(AuthenticationForm):
     """ログインフォーム"""
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs["class"] = "form-control"
-            widget=forms.TextInput(attrs={'class': 'form-control'}) # こ
+    username = forms.EmailField(label="メールアドレス", widget=forms.EmailInput(attrs={'class': 'form-control'}))
+
+    def clean_username(self):
+        email = self.cleaned_data['username']
+        return User.objects.filter(email=email).first().username
+
+# class LoginForm(AuthenticationForm):
+#     """ログインフォーム"""
+#     def __init__(self, *args, **kwargs):
+#         super(LoginForm, self).__init__(*args, **kwargs)
+#         for field in self.fields.values():
+#             field.widget.attrs["class"] = "form-control"
+#             for fieldname in ['email', 'password']:
+#                 widget=forms.EmailInput(attrs={'class': 'form-control'})
+            # widget =forms.EmailInput(attrs={'class': 'form-control'}) #
+            #  email= forms.EmailField(label="メールアドレス", widget=forms.EmailInput(attrs={'class': 'form-control'}))
+
+# class LoginForm(AuthenticationForm):
+#     email = forms.EmailField(label="メールアドレス", widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    
+#     def __init__(self, *args, **kwargs):
+#         super(LoginForm, self).__init__(*args, **kwargs)
+#         for fieldname in ['email', 'password']:
+#             self.fields[fieldname].widget.attrs['class'] = 'form-control'
+
+# class LoginForm(AuthenticationForm):
+#     """ログインフォーム"""
+
+#     def __init__(self, request=None, *args, **kwargs):
+#         super().__init__(request=request, *args, **kwargs)
+#         for field in self.fields.values():
+#             field.widget.attrs['class'] = 'form-control'
+
+# class LoginForm(AuthenticationForm):
+#     email = forms.EmailField(label="メールアドレス", widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    
+#     def __init__(self, *args, **kwargs):
+#         super(LoginForm, self).__init__(*args, **kwargs)
+#         for fieldname in ['email', 'password']:
+#             self.fields[fieldname].widget.attrs['class'] = 'form-control'
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -19,11 +57,11 @@ from django.contrib.auth.models import User
 #         fields = ('username', 'password1', 'password2', )
         # 必要に応じて、'email', 'first_name', 'last_name' など他のフィールドを追加可能
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(
-        max_length=150, 
-        help_text='半角英数字であること、記号は含まないこと。',
-        label='ユーザー名',
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+    email = forms.CharField(
+        max_length=254, 
+        help_text='必須。有効なメールアドレスを入力してください。',
+        label='メールアドレス',
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
     password1 = forms.CharField(
         widget=forms.PasswordInput,
@@ -38,7 +76,20 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2',)
+        fields = ('email', 'password1', 'password2',)
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
+from django.contrib.auth.models import AbstractUser
+
+
 
 class SearchForm(forms.Form):
     genre = forms.CharField(label='ジャンル', max_length=100, required=False)
@@ -100,8 +151,8 @@ class RestaurantForm(forms.ModelForm):
 
     class Meta:
         model = Restaurant
-        fields = ['name', 'phone_number', 'location', 'genre', 'price_range', 'google_maps', 'photo', 'url']  
-        
+        # fields = ['name', 'phone_number', 'location', 'genre', 'price_range', 'google_maps', 'photo', 'url']  
+        fields = ['name', 'phone_number', 'location', 'genre', 'price_range', 'google_maps', 'url'] 
         labels = {
             'name': '店舗名',
             'phone_number': '電話番号', 
@@ -110,7 +161,7 @@ class RestaurantForm(forms.ModelForm):
             'price_range': '価格帯',
             'url': 'ウェブサイトURL',
             'google_maps': 'Googleマップ',
-            'photo': '写真'
+            # 'photo': '写真'
             
         }   
 def __init__(self, *args, **kwargs):

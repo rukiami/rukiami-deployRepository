@@ -20,6 +20,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 
+from .forms import CustomUserCreationForm
 
 # Your other views...
 # 既存のビューは変更なしで残す
@@ -30,9 +31,9 @@ class TopView(TemplateView):
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "account/home.html"
 
-class LoginView(LoginView):
+class CustomLoginView(LoginView):
     """ログインページ"""
-    form_class = forms.LoginForm
+    form_class = LoginForm
     template_name = "account/login.html"
     def get_success_url(self):
         # messages.info(self.request, "ログインしました")
@@ -44,10 +45,42 @@ class LogoutView(LoginRequiredMixin, LogoutView):
     template_name = "account/login.html"
 
 class SignUpView(CreateView):
-    """サインアップ"""
-    form_class = SignUpForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('account:login')
-    template_name = 'account/signup.html'    
+    template_name = 'account/signup.html'   
+
+# class SignUpView(CreateView):
+#     """サインアップ"""
+#     form_class = SignUpForm
+#     success_url = reverse_lazy('account:login')
+#     template_name = 'account/signup.html' 
+
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)  
+
+# def sign_up(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('account:login')
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'account/signup.html', {'form': form})    
+
+# def sign_up(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.email = form.cleaned_data['email']  # メールアドレスをユーザー名に使用
+#             user.save()
+#             # その他のサインアップ処理
+#             return redirect('指定したURL')
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'account/signup.html', {'form': form})
 
 # class CalendarView(TemplateView):
 #     template_name = 'account/calendar.html'  # calendar.html テンプレートを使用する
@@ -245,9 +278,9 @@ def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
                 # ログインに成功したら、ホーム画面などにリダイレクト

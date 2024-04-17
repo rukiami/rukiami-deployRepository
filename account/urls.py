@@ -4,7 +4,7 @@ from django.urls import path
 # from django.conf.urls.static import static
 from .views import(
     TopView, HomeView, LoginView, LogoutView, SignUpView,
-    restaurantListView, delete_restaurant,  RestaurantCreateView)
+    restaurantListView, delete_restaurant,  RestaurantCreateView, CustomLoginView)
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -15,7 +15,8 @@ app_name="account"
 urlpatterns = [
 path("", views.TopView.as_view(), name="top"),
     path("home/", views.HomeView.as_view(), name="home"),
-    path("login/", views.LoginView.as_view(), name="login"),
+    # path("login/", views.LoginView.as_view(), name="login"),
+    path('login/', views.CustomLoginView.as_view(), name='login'),
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("signup/", views.SignUpView.as_view(), name="signup"),
     path('restaurant/', views.restaurantListView.as_view(), name='restaurant_list'),

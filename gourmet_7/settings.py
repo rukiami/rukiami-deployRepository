@@ -138,4 +138,10 @@ MEDIA_URL = '/media/'
 DEVELOPMENT_MODE = True  # または False
 
 
+# AUTH_USER_MODEL = 'account.CustomUser'
+
+
+
+
+
 

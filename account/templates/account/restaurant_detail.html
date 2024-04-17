@@ -20,16 +20,16 @@
        <div class="photo">
          {% if photo.image %}
          
-         {% comment %} <input type="file" id="file-input" accept="image/*"> {% endcomment %}
-          <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}" style="max-width: 200px; height: auto;">
+        {% comment %} <input type="file" id="file-input" accept="image/*">  {% endcomment %}
+        <img src="{{ photo.image.url }}" alt="{{ photo.image.name }}" style="max-width: 200px; height: auto;">
       {% else %}
         
       {% endif %}
     </div> 
  {% empty %}
 
-  <p>写真はまだありません。</p> 
- {% endfor %} 
+ <p>写真はまだありません。</p> 
+ {% endfor %}  
 </div>
 
 <div class="edit-delete-button-container">

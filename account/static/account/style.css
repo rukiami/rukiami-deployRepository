@@ -519,3 +519,12 @@ h1, .main-title {
     justify-content: center;
 
 }
+
+
+.photo-container {
+    text-align: center; /* 中央揃え */
+}
+
+.file-input-container {
+    display: none; /* 要素を非表示にする */
+}
